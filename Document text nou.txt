@@ -1,13 +1,43 @@
-class Person {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+<!doctype html>
+   <html>
+<head>
+    <title>JavaScript</title>
+</head>
+<body>
+   <button id="locationButton">Get My Location</button>
+    <div id="locationOutput"></div>
+    <script src="file.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+document
+.getElementById("locationButton")
+.addEventListener("click", getLocation);
+
+function getLocation() {
+    const locationOutput = document.getElementById("locationOutput");
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+    locationOutput.innerHTML = "Geolocation is not supported by this browser.";
+    }
     }
 
-    getFullName() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-}
-
-let person = new Person("John", "Doe");
-console.log(person.getFullName()); // "John Doe"
+    function showPosition (position) {
+        const locationOutput = document.getElementById("locationOutput");
+        locationOutput.innerHTML =
+        "Latitude:" +
+        position.coords.latitude +
+        "<br>Longitude:" +
+        position.coords.longitude;
+        }
